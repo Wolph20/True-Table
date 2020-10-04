@@ -32,7 +32,7 @@ class Conversion:
     def notGreater(self, char):
         try:
             a = self.precedence[char]
-            b = self.precedence[self.topChar]
+            b = self.precedence[self.topChar()]
             return True if a <= b else False
         except KeyError:
             return False
@@ -61,7 +61,7 @@ class Conversion:
                     self.pop()
             else: # An operator is finded, we just push it at the stack.
                 while (not self.isEmpty() and self.notGreater(char)):
-                    self.output.append(char)
+                    self.output.append(self.pop())
                 self.push(char)
                 
         # Finally, we pop all the operators from the stack
